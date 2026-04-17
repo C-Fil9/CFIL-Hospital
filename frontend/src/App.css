@@ -1,0 +1,182 @@
+/* =============================================
+   GLOBAL DESIGN SYSTEM — Bệnh Viện CFil
+   Healthcare Color Palette & Typography
+============================================= */
+
+:root {
+  /* Primary - Medical Teal */
+  --primary: #0d9488;
+  --primary-light: #14b8a6;
+  --primary-dark: #0f766e;
+  --primary-50: #f0fdfa;
+  --primary-100: #ccfbf1;
+
+  /* Theme Defaults (Light Mode) */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --nav-text: #0f172a;
+  --footer-bg: #0f172a;
+  --card-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --navbar-shadow: 0 4px 30px var(--shadow-color);
+
+  /* Accents */
+  --accent-blue: #3b82f6;
+  --accent-red: #ef4444;
+  --accent-green: #22c55e;
+  --accent-amber: #f59e0b;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.12);
+  --shadow-primary: 0 8px 24px rgba(13, 148, 136, 0.25);
+
+  /* Radius & Transitions */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
+}
+
+.dark-theme {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --border: #334155;
+  --text: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --nav-bg: rgba(15, 23, 42, 0.9);
+  --nav-text: #ffffff;
+  --footer-bg: #0b1121;
+  --card-bg: #1e293b;
+  --shadow-color: rgba(255, 255, 255, 0.05);
+}
+
+
+.green-theme {
+  --bg: #f8fafc; 
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --text-secondary: #0d9488;
+  --text-muted: #14b8a6;
+  --nav-bg: linear-gradient(135deg, #0f172a 0%, #134e4a 100%); 
+  --nav-text: #ffffff;
+  --footer-bg: linear-gradient(135deg, #0f172a 0%, #134e4a 100%);
+  --card-bg: #ffffff;
+  --shadow-color: rgba(13, 148, 136, 0.1);
+  --navbar-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+
+/* RESET & BASE */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 2rem;
+  letter-spacing: -0.3px;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-fast);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* UTILITY — Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* UTILITY — Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* UTILITY — Selection */
+::selection {
+  background: var(--primary-100);
+  color: var(--primary-dark);
+}

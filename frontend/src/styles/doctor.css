@@ -1,0 +1,232 @@
+/* =============================================
+   DOCTORS PAGE — Healthcare Premium Design
+============================================= */
+
+.doctors-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.doctors-title {
+    text-align: center;
+    margin-bottom: 16px;
+    color: #0f172a;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.doctors-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    margin: 16px auto 0;
+    border-radius: 2px;
+}
+
+/* SEARCH BAR */
+.search-container {
+    max-width: 600px;
+    margin: 40px auto 50px auto;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 14px;
+    border: 1.5px solid #e2e8f0;
+    font-size: 0.95rem;
+    color: #0f172a;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.search-input:focus {
+    border-color: #0d9488;
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1), 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.search-input::placeholder {
+    color: #94a3b8;
+}
+
+/* DOCTORS GRID */
+.doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+/* DOCTOR CARD */
+.doctor-card {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #f1f5f9;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.doctor-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    border-color: #ccfbf1;
+}
+
+.doctor-card-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px;
+}
+
+.doctor-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 16px;
+    object-fit: cover;
+    border: 2px solid #f0fdfa;
+    flex-shrink: 0;
+}
+
+/* TEXT */
+.doctor-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.doctor-name {
+    font-size: 1.2rem;
+    color: #0f172a;
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.doctor-meta {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.meta-icon {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+}
+
+.card-mini-logo {
+    height: 16px;
+    width: auto;
+    border-radius: 3px;
+}
+
+.doctor-price {
+    color: #0d9488 !important;
+    font-weight: 700;
+    font-size: 0.95rem !important;
+    background: #f0fdfa;
+    padding: 4px 10px;
+    border-radius: 8px;
+    display: inline-flex;
+    width: fit-content;
+}
+
+/* BOOK BUTTON */
+.doctor-btn {
+    text-align: center;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.92rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    border: none;
+    display: block;
+    letter-spacing: 0.3px;
+}
+
+.doctor-btn:hover {
+    background: linear-gradient(135deg, #0f766e, #115e59);
+    box-shadow: 0 4px 15px rgba(13, 148, 136, 0.25);
+}
+
+/* LOADING & ERROR */
+.loading-msg,
+.error-msg {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.error-msg {
+    color: #ef4444;
+}
+
+/* NO RESULT */
+.no-result-msg {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: #64748b;
+    font-size: 1.05rem;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 2px dashed #e2e8f0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .doctors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doctors-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .doctor-card-body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .doctor-meta {
+        justify-content: center;
+    }
+
+    .doctor-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}

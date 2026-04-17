@@ -1,0 +1,516 @@
+/* CONTAINER TỔNG */
+.manage-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.manage-title {
+    text-align: left;
+    color: #2d3748;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* =========================================
+   FORM THÊM BÁC SĨ
+========================================= */
+.doctor-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+    border: 1px solid #edf2f7;
+}
+
+.doctor-form input {
+    padding: 12px 16px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: #f7fafc;
+}
+
+.doctor-form input:focus {
+    outline: none;
+    border-color: #667eea;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.doctor-form button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.doctor-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.35);
+}
+
+/* =========================================
+   DANH SÁCH BÁC SĨ (GRID CARDS)
+========================================= */
+.doctor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* THẺ BÁC SĨ */
+.doctor-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid #edf2f7;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e0;
+}
+
+.doctor-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.doctor-specialty {
+    font-size: 0.95rem;
+    color: #718096;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.doctor-hospital {
+    font-size: 0.92rem;
+    color: #4a5568;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mini-logo-inline {
+    height: 18px;
+    width: auto;
+    border-radius: 4px;
+}
+
+/* Nút Xóa Đỏ Nhạt */
+.delete-btn {
+    margin-top: auto;
+    background: #fff5f5;
+    color: #e53e3e;
+    border: 1px solid #fed7d7;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.delete-btn:hover {
+    background: #e53e3e;
+    color: white;
+    border-color: #e53e3e;
+}
+
+/* Định dạng tiền tệ */
+.doctor-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #38a169;
+    margin-bottom: 5px;
+}
+
+/* =========================================
+   LỊCH LÀM VIỆC - WEEKLY CALENDAR
+========================================= */
+
+.schedule-section {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f5f9;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.schedule-header .section-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.week-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.week-nav-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #64748b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.week-nav-btn:hover {
+    background: #0d9488;
+    color: white;
+    border-color: #0d9488;
+}
+
+.week-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #334155;
+    min-width: 220px;
+    text-align: center;
+}
+
+.today-btn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid #0d9488;
+    background: white;
+    color: #0d9488;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.today-btn:hover {
+    background: #0d9488;
+    color: white;
+}
+
+/* ====== CALENDAR GRID ====== */
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr);
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.calendar-corner {
+    background: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+}
+
+.calendar-day-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 4px;
+    background: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+    border-right: 1px solid #f1f5f9;
+    gap: 2px;
+}
+
+.calendar-day-header:last-child {
+    border-right: none;
+}
+
+.calendar-day-header.today {
+    background: #f0fdfa;
+}
+
+.day-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.day-number {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #334155;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.today-number {
+    background: #0d9488;
+    color: white !important;
+}
+
+/* ====== TIME LABEL ====== */
+
+.calendar-time-label {
+    padding: 0 8px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    background: #fafbfc;
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #f1f5f9;
+    min-height: 72px;
+}
+
+/* ====== CALENDAR CELL ====== */
+
+.calendar-cell {
+    border-right: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 4px;
+    min-height: 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    transition: background 0.15s;
+}
+
+.calendar-cell:last-child {
+    border-right: none;
+}
+
+.calendar-cell:hover {
+    background: #fafbfc;
+}
+
+.calendar-cell.today-col {
+    background: #f0fdfa;
+}
+
+.calendar-cell.today-col:hover {
+    background: #e6fbf5;
+}
+
+/* ====== APPOINTMENT EVENT BLOCK ====== */
+
+.calendar-event {
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    cursor: default;
+    transition: transform 0.15s, box-shadow 0.15s;
+    min-height: 48px;
+    justify-content: center;
+}
+
+.calendar-event:hover {
+    transform: scale(1.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    z-index: 2;
+    position: relative;
+}
+
+.event-time {
+    font-weight: 700;
+    font-size: 0.68rem;
+    opacity: 0.8;
+}
+
+.event-doctor {
+    font-weight: 700;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-patient {
+    font-weight: 500;
+    font-size: 0.65rem;
+    opacity: 0.7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ====== DOCTOR LEGEND ====== */
+
+.doctor-legend {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+
+.legend-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #475569;
+    font-weight: 500;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   AVATAR
+========================================= */
+.doctor-avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.doctor-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e2e8f0;
+    transition: border-color 0.3s;
+}
+
+.doctor-card:hover .doctor-avatar {
+    border-color: #667eea;
+}
+
+/* =========================================
+   FORM ACTIONS
+========================================= */
+.form-actions {
+    display: flex;
+    gap: 10px;
+    grid-column: 1 / -1;
+}
+
+.cancel-btn {
+    background: #fff5f5 !important;
+    color: #e53e3e !important;
+    border: 1px solid #fed7d7 !important;
+}
+
+.cancel-btn:hover {
+    background: #e53e3e !important;
+    color: white !important;
+}
+
+.edit-btn {
+    background: #ebf4ff;
+    color: #3182ce;
+    border: 1px solid #bee3f8;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.edit-btn:hover {
+    background: #3182ce;
+    color: white;
+    border-color: #3182ce;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 768px) {
+    .calendar-grid {
+        grid-template-columns: 50px repeat(7, 1fr);
+        font-size: 0.7rem;
+    }
+
+    .calendar-cell {
+        min-height: 56px;
+        padding: 2px;
+    }
+
+    .calendar-event {
+        min-height: 36px;
+        padding: 3px 5px;
+    }
+
+    .event-patient {
+        display: none;
+    }
+
+    .schedule-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .doctor-list {
+        grid-template-columns: 1fr;
+    }
+}

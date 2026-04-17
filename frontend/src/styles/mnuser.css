@@ -1,0 +1,107 @@
+.manage-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: linear-gradient(135deg, #4facfe, #6a11cb, #8e44ad);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Title */
+.manage-page .page-title {
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Card */
+.manage-page .card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Form layout */
+.manage-page .form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.manage-page .form-grid input {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Buttons */
+.manage-page .btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.manage-page .btn-add {
+  background: linear-gradient(45deg, #ff6a00, #ff3cac);
+}
+
+.manage-page .btn-update {
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+}
+
+.manage-page .btn-edit {
+  background: linear-gradient(45deg, #36d1dc, #5b86e5);
+}
+
+.manage-page .btn-delete {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+}
+
+.manage-page .btn:hover {
+  transform: scale(1.05);
+}
+
+/* Table */
+.manage-page .table-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.manage-page table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.manage-page thead {
+  background: #f2f2f2;
+}
+
+.manage-page th,
+.manage-page td {
+  padding: 15px;
+  text-align: left;
+}
+
+.manage-page tbody tr {
+  border-top: 1px solid #eee;
+  transition: 0.2s;
+}
+
+.manage-page tbody tr:hover {
+  background: #f9f9f9;
+}
+
+.manage-page .action-btns {
+  display: flex;
+  gap: 10px;
+}

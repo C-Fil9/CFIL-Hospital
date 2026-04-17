@@ -1,0 +1,55 @@
+.forbidden-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Arial', sans-serif;
+}
+
+.forbidden-content {
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.forbidden-title {
+  font-size: 8rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.forbidden-subtitle {
+  font-size: 2rem;
+  margin: 1rem 0;
+  font-weight: 300;
+}
+
+.forbidden-message {
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+  line-height: 1.6;
+}
+
+.forbidden-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #ff6b6b;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.forbidden-button:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+}

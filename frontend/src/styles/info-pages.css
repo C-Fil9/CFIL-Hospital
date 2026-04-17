@@ -1,0 +1,741 @@
+/* =============================================
+   STATIC INFO PAGES — Healthcare Premium Design
+   Shared styles for: About, Services, Treatment,
+   Guide, Contact, Recruitment
+============================================= */
+
+/* PAGE WRAPPER */
+.info-page {
+    font-family: 'Inter', sans-serif;
+    color: #0f172a;
+}
+
+/* =========================================
+   PAGE HERO BANNER
+========================================= */
+.page-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #134e4a 60%, #0d9488 100%);
+    color: #ffffff;
+    padding: 80px 20px 70px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.page-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+}
+
+.page-hero p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   CONTENT SECTION
+========================================= */
+.info-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 24px;
+}
+
+.info-section.alt-bg {
+    background: #f8fafc;
+    max-width: 100%;
+}
+
+.info-section.alt-bg>.section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-heading h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.4px;
+    margin-bottom: 10px;
+}
+
+.section-heading h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    margin: 14px auto 0;
+    border-radius: 2px;
+}
+
+.section-heading p {
+    color: #64748b;
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 14px auto 0;
+}
+
+/* =========================================
+   TEXT CONTENT BLOCKS
+========================================= */
+.text-block {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.text-block h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 14px;
+    margin-top: 36px;
+}
+
+.text-block p {
+    margin-bottom: 16px;
+}
+
+.text-block ul {
+    padding-left: 24px;
+    margin-bottom: 16px;
+}
+
+.text-block ul li {
+    margin-bottom: 10px;
+    color: #475569;
+    line-height: 1.7;
+}
+
+.text-block ul li strong {
+    color: #0f172a;
+}
+
+/* =========================================
+   CARD GRID — Services, Treatment, etc.
+========================================= */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.card-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.info-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 32px 28px;
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.info-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
+    border-color: #ccfbf1;
+}
+
+.info-card .card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 18px;
+    overflow: hidden;
+}
+
+.info-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* =========================================
+   TIMELINE / STEPS
+========================================= */
+.steps-list {
+    max-width: 700px;
+    margin: 0 auto;
+    counter-reset: step;
+}
+
+.step-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    align-items: flex-start;
+}
+
+.step-number {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.step-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.step-content p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* =========================================
+   CONTACT FORM
+========================================= */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.contact-info-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.contact-info-item .ci-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #0d9488;
+}
+
+.contact-info-item h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.contact-info-item p {
+    font-size: 0.88rem;
+    color: #64748b;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 13px 16px;
+    border-radius: 12px;
+    border: 1.5px solid #e2e8f0;
+    font-size: 0.92rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.25s ease;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #0d9488;
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+    background: #ffffff;
+}
+
+.contact-form textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+.contact-form button {
+    padding: 14px;
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.contact-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(13, 148, 136, 0.3);
+}
+
+/* =========================================
+   JOB CARD
+========================================= */
+.job-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.job-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    border-color: #ccfbf1;
+}
+
+.job-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.job-card .job-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.job-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: #f0fdfa;
+    color: #0d9488;
+    border: 1px solid #ccfbf1;
+}
+
+.job-card p {
+    color: #64748b;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.job-apply-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    color: #ffffff;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.job-apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(13, 148, 136, 0.25);
+}
+
+/* =========================================
+   VALUE CARDS (About page)
+========================================= */
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.value-card {
+    text-align: center;
+    padding: 28px 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    border-color: #ccfbf1;
+}
+
+.value-card .v-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.value-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.value-card p {
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 60px 20px 50px;
+    }
+
+    .page-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .card-grid-3,
+    .card-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .value-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .info-section {
+        padding: 50px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .value-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tag-mini-logo {
+    height: 14px;
+    width: auto;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+/* =========================================
+   RECRUITMENT APPLICATION MODAL
+========================================= */
+.recruit-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.recruit-modal {
+    background: #ffffff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s ease;
+}
+
+.recruit-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    color: #475569;
+}
+
+.recruit-modal-close:hover {
+    background: #f1f5f9;
+    transform: scale(1.1);
+}
+
+.recruit-modal-header {
+    background: linear-gradient(135deg, #0f172a 0%, #134e4a 60%, #0d9488 100%);
+    padding: 32px 32px 28px;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+}
+
+.recruit-modal-header h2 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.recruit-modal-position {
+    color: #5eead4;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.recruit-form {
+    padding: 28px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.recruit-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.recruit-form-group label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.recruit-form-group label .required {
+    color: #ef4444;
+}
+
+.recruit-form-group input,
+.recruit-form-group textarea {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.25s ease;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.recruit-form-group input:focus,
+.recruit-form-group textarea:focus {
+    border-color: #0d9488;
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+    background: #ffffff;
+}
+
+.recruit-form-group textarea {
+    resize: none;
+    min-height: 90px;
+}
+
+.recruit-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.recruit-file-upload {
+    position: relative;
+}
+
+.recruit-file-upload input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.recruit-file-info {
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px dashed #cbd5e1;
+    text-align: center;
+    transition: all 0.25s ease;
+    background: #f8fafc;
+}
+
+.recruit-file-upload:hover .recruit-file-info {
+    border-color: #0d9488;
+    background: #f0fdfa;
+}
+
+.file-placeholder {
+    color: #94a3b8;
+    font-size: 0.88rem;
+}
+
+.file-selected {
+    color: #0d9488;
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+.recruit-submit-btn {
+    padding: 14px;
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    margin-top: 4px;
+}
+
+.recruit-submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(13, 148, 136, 0.3);
+}
+
+.recruit-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.recruit-status {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.recruit-status.success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.recruit-status.error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+@media (max-width: 600px) {
+    .recruit-modal {
+        max-width: 100%;
+        border-radius: 16px;
+    }
+
+    .recruit-form {
+        padding: 20px;
+    }
+
+    .recruit-modal-header {
+        padding: 24px 20px 22px;
+    }
+
+    .recruit-form-row {
+        grid-template-columns: 1fr;
+    }
+}

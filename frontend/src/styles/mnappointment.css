@@ -1,0 +1,68 @@
+.appointment-container{
+width:95%;
+max-width:1200px;
+margin:auto;
+padding:30px;
+font-family:Segoe UI;
+}
+
+.appointment-title{
+font-size:26px;
+font-weight:600;
+margin-bottom:20px;
+color:#2c3e50;
+}
+
+/* table */
+
+.appointment-table{
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+border-radius:10px;
+overflow:hidden;
+}
+
+.appointment-table th{
+background:#2a7be4;
+color:white;
+padding:12px;
+text-align:left;
+}
+
+.appointment-table td{
+padding:12px;
+border-bottom:1px solid #eee;
+}
+
+.appointment-table tr:hover{
+background:#f6f8fb;
+}
+
+/* status */
+
+.status-paid{
+color:#2ecc71;
+font-weight:600;
+}
+
+.status-pending{
+color:#f39c12;
+font-weight:600;
+}
+
+/* button */
+
+.cancel-btn{
+background:#ff4d4f;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.cancel-btn:hover{
+background:#d9363e;
+}
