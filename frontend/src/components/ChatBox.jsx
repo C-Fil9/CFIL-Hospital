@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "../styles/chatbox.css";
-
+export const API_BASE_DEFAULT = import.meta.env.VITE_API_BASE_DEFAULT
 export default function ChatBox() {
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Xin chào 👋 Tôi có thể giúp gì cho bạn?" }
@@ -31,7 +31,7 @@ export default function ChatBox() {
     ]);
 
     try {
-      const res = await fetch("http://localhost:5000/api/chat", {
+      const res = await fetch(`${API_BASE_DEFAULT}/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -76,7 +76,7 @@ export default function ChatBox() {
           <div className="chat-body">
             {messages.map((msg, i) => (
               <div key={i} className={`msg ${msg.sender}`}>
-                
+
                 {msg.sender === "bot" && <div className="avatar">🤖</div>}
 
                 <div className="content">
