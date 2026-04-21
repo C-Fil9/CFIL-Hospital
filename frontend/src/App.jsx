@@ -8,6 +8,11 @@ import Doctor from "./pages/Doctors";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminRoute from "./components/AdminRoute";
 import AdminLayout from "./components/AdminLayout";
+import DoctorRoute from "./components/DoctorRoute";
+import DoctorLayout from "./components/DoctorLayout";
+import DoctorDashboard from "./pages/Doctor/DoctorDashboard";
+import DoctorMessages from "./pages/Doctor/DoctorMessages";
+import PatientChat from "./pages/PatientChat";
 import Appointments from "./pages/Appointments";
 import Schedule from "./pages/Schedule";
 import ManageUsers from "./pages/Admin/ManageUsers";
@@ -52,6 +57,13 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/recruitment" element={<Recruitment />} />
         <Route path="/403" element={<Forbidden403 />} />
+        <Route path="/messages" element={<PatientChat />} />
+
+        {/* Doctor routes */}
+        <Route path="/doctor" element={<DoctorRoute><DoctorLayout /></DoctorRoute>}>
+          <Route index element={<DoctorDashboard />} />
+          <Route path="messages" element={<DoctorMessages />} />
+        </Route>
 
         <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
           <Route index element={<AdminDashboard />} />

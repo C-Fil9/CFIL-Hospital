@@ -27,6 +27,7 @@ export default function Navbar() {
 
     // Check admin an toàn hơn (hỗ trợ cả trường hợp chữ "Admin" viết hoa)
     const isAdmin = user?.role === "admin" || user?.role === "Admin" || user?.role === 1;
+    const isDoctor = user?.role === "doctor";
 
     return (
         <nav className="navbar">
@@ -55,10 +56,18 @@ export default function Navbar() {
                         {isAdmin && (
                             <Link
                                 to="/admin"
-                                className={`navbar-link dashboard-link ${location.pathname === "/admin" ? "active" : ""
-                                    }`}
+                                className={`navbar-link dashboard-link ${location.pathname.startsWith("/admin") ? "active" : ""}`}
                             >
                                 📊 Dashboard
+                            </Link>
+                        )}
+
+                        {isDoctor && (
+                            <Link
+                                to="/doctor"
+                                className={`navbar-link dashboard-link ${location.pathname.startsWith("/doctor") ? "active" : ""}`}
+                            >
+                                🩺 Bác sĩ
                             </Link>
                         )}
                     </div>
@@ -103,6 +112,18 @@ export default function Navbar() {
                                 <Link to="/profile" className="dropdown-item">
                                     👤 Hồ sơ
                                 </Link>
+
+                                {!isDoctor && !isAdmin && (
+                                    <Link to="/messages" className="dropdown-item">
+                                        💬 Tin nhắn Bác sĩ
+                                    </Link>
+                                )}
+
+                                {isDoctor && (
+                                    <Link to="/doctor/messages" className="dropdown-item">
+                                        💬 Tin nhắn bệnh nhân
+                                    </Link>
+                                )}
 
                                 <hr />
 

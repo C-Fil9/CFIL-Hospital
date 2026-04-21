@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
     address: String,
     role: {
       type: String,
-      enum: ["admin", "user"],
+      enum: ["admin", "user", "doctor"],
       default: "user",
     },
     resetOtp: String,

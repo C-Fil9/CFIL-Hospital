@@ -18,3 +18,15 @@ exports.isAdmin = (req, res, next) => {
     return res.status(403).json({ message: "Admin only" });
   next();
 };
+
+exports.isDoctor = (req, res, next) => {
+  if (req.user.role !== "doctor")
+    return res.status(403).json({ message: "Doctor only" });
+  next();
+};
+
+exports.isDoctorOrAdmin = (req, res, next) => {
+  if (req.user.role !== "doctor" && req.user.role !== "admin")
+    return res.status(403).json({ message: "Doctor or Admin only" });
+  next();
+};

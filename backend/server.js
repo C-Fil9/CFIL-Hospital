@@ -25,6 +25,7 @@ app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/api/chat", require("./routes/chatRoutes"));
 app.use("/api/contacts", require("./routes/contactRoutes"));
 app.use("/api/recruitments", require("./routes/recruitmentRoutes"));
+app.use("/api/messages", require("./routes/messageRoutes"));
 
 // 🔥 Health check (rất nên có)
 app.get("/", (req, res) => {

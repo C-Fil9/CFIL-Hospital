@@ -2,7 +2,7 @@ import { useAuth } from "../hooks/useAuth";
 import "../styles/profile.css";
 import avatar from "../../asset/avatar.webp";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const API_BASE_DEFAULT = import.meta.env.VITE_API_BASE_DEFAULT
 
@@ -211,6 +211,40 @@ export default function Profile() {
             <ContactHistory />
           </div>
           
+          {/* 💬 Tin nhắn bác sĩ */}
+          <div className="content-section" style={{ marginTop: '24px' }}>
+            <h3 className="section-title">
+              <div className="section-icon">💬</div>
+              Tin nhắn với Bác sĩ
+            </h3>
+            <div style={{
+              textAlign: 'center',
+              padding: '24px 20px',
+              background: 'linear-gradient(135deg, #eff6ff, #dbeafe)',
+              borderRadius: '12px',
+              border: '1px solid #bfdbfe'
+            }}>
+              <p style={{ margin: '0 0 14px', color: '#1e40af', fontSize: '0.9rem' }}>
+                💬 Nhắn tin trực tiếp với bác sĩ phụ trách lịch hẹn của bạn.
+              </p>
+              <Link
+                to="/messages"
+                style={{
+                  display: 'inline-block',
+                  background: 'linear-gradient(135deg, #1a73e8, #0f4c81)',
+                  color: '#fff',
+                  padding: '10px 24px',
+                  borderRadius: '10px',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  fontSize: '0.9rem',
+                }}
+              >
+                Mở trang tin nhắn →
+              </Link>
+            </div>
+          </div>
+
           {/* Add more sections here later if needed, e.g., Appointment History */}
         </div>
 
