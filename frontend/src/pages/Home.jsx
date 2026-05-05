@@ -42,7 +42,7 @@ export const Home = () => {
                 <div className="service-grid">
 
                     <div className="service-item">
-                        <Link to="/doctor">👨‍⚕️ Tìm bác sĩ</Link>
+                        <Link to="/doctors">👨‍⚕️ Tìm bác sĩ</Link>
                     </div>
 
                     <div className="service-item">

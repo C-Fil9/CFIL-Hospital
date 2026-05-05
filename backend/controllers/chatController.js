@@ -2,7 +2,7 @@ require("dotenv").config();
 const Doctor = require("../models/Doctor");
 const { askAI } = require("../utils/gemini");
 
-// 🔥 normalize tiếng Việt (FIX CHÍNH)
+//  normalize tiếng Việt (FIX CHÍNH)
 const normalizeText = (text) => {
   return text
     .toLowerCase()
@@ -10,8 +10,6 @@ const normalizeText = (text) => {
     .replace(/đ/g, "d") // QUAN TRỌNG
     .replace(/[\u0300-\u036f]/g, "");
 };
-
-// 🔥 mapping KHÔNG DẤU
 const symptomMap = {
   "dau lung": "xương khớp",
   "cot song": "xương khớp",
@@ -48,7 +46,7 @@ const symptomMap = {
   "dau hong": "tai mũi họng",
 };
 
-// 🔥 detect chuyên khoa
+// detect chuyên khoa
 const detectSpecialties = (message) => {
   const msg = normalizeText(message);
   const found = new Set();
@@ -62,7 +60,7 @@ const detectSpecialties = (message) => {
   return Array.from(found);
 };
 
-// 🔥 filter đúng khoa (chống lệch)
+// filter đúng khoa (chống lệch)
 const strictFilterDoctors = (doctors, specialties) => {
   if (specialties.length === 0) return doctors;
 
@@ -73,7 +71,7 @@ const strictFilterDoctors = (doctors, specialties) => {
   );
 };
 
-// 🔥 ranking
+// ranking
 const rankDoctors = (doctors, specialties) => {
   return doctors
     .map(doc => {
@@ -100,7 +98,7 @@ const rankDoctors = (doctors, specialties) => {
     .slice(0, 5);
 };
 
-// 🔥 clean data trả về
+//  clean data trả về
 const formatDoctorsResponse = (docs) => {
   return docs.map(doc => ({
     _id: doc._id,
@@ -123,13 +121,13 @@ const chatWithAI = async (req, res) => {
       });
     }
 
-    // 🔥 1. detect
+    // 1. detect
     const specialties = detectSpecialties(message);
 
     console.log("Message:", message);
     console.log("Detected:", specialties);
 
-    // 🔥 2. QUERY (FIX LỖI CHÍNH)
+    // 2. QUERY (FIX LỖI CHÍNH)
     let doctors = [];
 
     if (specialties.length > 0) {
@@ -148,20 +146,20 @@ const chatWithAI = async (req, res) => {
       });
     }
 
-    // 🔥 3. FILTER lại
+    //  3. FILTER lại
     doctors = strictFilterDoctors(doctors, specialties);
 
-    // 🔥 4. fallback nếu không có
+    //  4. fallback nếu không có
     if (doctors.length === 0) {
       doctors = await Doctor.find().limit(5);
     }
 
-    // 🔥 5. ranking
+    //  5. ranking
     doctors = rankDoctors(doctors, specialties);
 
     console.log("Doctors found:", doctors.length);
 
-    // 🔥 6. context AI
+    //  6. context AI
     const context = history
       .slice(-3)
       .map(m => `${m.sender}: ${m.text}`)

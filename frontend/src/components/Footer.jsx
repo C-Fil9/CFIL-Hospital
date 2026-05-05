@@ -11,8 +11,8 @@ export default function Footer() {
         {/* Column 1 - Hospital Info */}
         <div className="footer-col">
           <h3 className="footer-brand">
-             <img src={logo} alt="Logo" className="footer-logo" />
-             Bệnh Viện CFil
+            <img src={logo} alt="Logo" className="footer-logo" />
+            Bệnh Viện CFil
           </h3>
           <p className="footer-desc">
             Hệ thống y tế chất lượng cao, chăm sóc sức khỏe toàn diện với đội ngũ bác sĩ chuyên khoa hàng đầu.
@@ -29,7 +29,7 @@ export default function Footer() {
           <h4>Liên kết nhanh</h4>
           <ul>
             <li><Link to="/">Trang chủ</Link></li>
-            <li><Link to="/doctor">Bác sĩ</Link></li>
+            <li><Link to="/doctors">Bác sĩ</Link></li>
             <li><Link to="/appointments">Đặt lịch khám</Link></li>
             <li><Link to="/schedule">Lịch khám</Link></li>
           </ul>
