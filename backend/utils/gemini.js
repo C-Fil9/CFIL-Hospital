@@ -17,4 +17,22 @@ const askAI = async (prompt) => {
   }
 };
 
-module.exports = { askAI };
+// ✅ Phân tích hình ảnh với Gemini Vision
+const askAIWithImage = async (prompt, imageBuffer, mimeType) => {
+  try {
+    const base64Image = imageBuffer.toString("base64");
+    const imagePart = {
+      inlineData: {
+        data: base64Image,
+        mimeType: mimeType,
+      },
+    };
+    const result = await model.generateContent([prompt, imagePart]);
+    return result.response.text();
+  } catch (err) {
+    console.error("Gemini vision error:", err.message);
+    return null;
+  }
+};
+
+module.exports = { askAI, askAIWithImage };
