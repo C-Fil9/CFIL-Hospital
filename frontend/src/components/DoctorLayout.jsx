@@ -41,6 +41,14 @@ export default function DoctorLayout() {
           >
             💬 Tin nhắn bệnh nhân
           </NavLink>
+          <NavLink
+            to="/doctor/medical-records"
+            className={({ isActive }) =>
+              `doctor-nav-item${isActive ? " active" : ""}`
+            }
+          >
+            📋 Hồ sơ bệnh án
+          </NavLink>
         </nav>
 
         <button className="doctor-logout-btn" onClick={handleLogout}>

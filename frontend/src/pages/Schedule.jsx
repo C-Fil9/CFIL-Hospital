@@ -55,6 +55,16 @@ export default function Schedule() {
     }
   };
 
+  const getStatusLabel = (status) => {
+    switch (status) {
+      case "Pending": return "Chờ xác nhận";
+      case "Confirmed": return "Đã xác nhận";
+      case "Completed": return "Hoàn thành";
+      case "Cancelled": return "Đã hủy";
+      default: return status;
+    }
+  };
+
   return (
     <div className="schedule-container">
       <h1>📅 Lịch khám của bạn</h1>
@@ -74,7 +84,7 @@ export default function Schedule() {
 
               <div className="flex flex-wrap gap-2 mt-4">
                 <span className={`status ${item.status?.toLowerCase()}`}>
-                  {item.status}
+                  {getStatusLabel(item.status)}
                 </span>
                 
                 <span className={`status-payment ${item.paymentStatus}`}>
@@ -88,7 +98,12 @@ export default function Schedule() {
                     Thanh toán ngay
                   </button>
                 )}
-                {item.status !== "Cancelled" && (
+                {item.status === "Completed" && (
+                  <button className="view-record-btn" onClick={() => navigate("/medical-records")}>
+                    🩺 Xem hồ sơ bệnh án
+                  </button>
+                )}
+                {item.status !== "Cancelled" && item.status !== "Completed" && (
                   <button className="cancel-btn" onClick={() => handleCancel(item._id)}>
                     Hủy lịch
                   </button>

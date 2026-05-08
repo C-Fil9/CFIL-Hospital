@@ -12,6 +12,14 @@ export default function DoctorDashboard() {
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({ total: 0, pending: 0, confirmed: 0, completed: 0 });
 
+  // ---- Modal state ----
+  const [showModal, setShowModal] = useState(false);
+  const [selectedAppt, setSelectedAppt] = useState(null);
+  const [diagnosis, setDiagnosis] = useState("");
+  const [prescription, setPrescription] = useState([{ name: "", dosage: "", instructions: "" }]);
+  const [doctorNotes, setDoctorNotes] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
   useEffect(() => {
     fetchConversations();
   }, []);
@@ -50,6 +58,77 @@ export default function DoctorDashboard() {
     Confirmed: "Đã xác nhận",
     Completed: "Hoàn thành",
     Cancelled: "Đã hủy",
+  };
+
+  // ---- Modal handlers ----
+  const openModal = (conv) => {
+    setSelectedAppt(conv);
+    setDiagnosis("");
+    setPrescription([{ name: "", dosage: "", instructions: "" }]);
+    setDoctorNotes("");
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedAppt(null);
+  };
+
+  const addPrescriptionRow = () => {
+    setPrescription([...prescription, { name: "", dosage: "", instructions: "" }]);
+  };
+
+  const removePrescriptionRow = (index) => {
+    if (prescription.length <= 1) return;
+    setPrescription(prescription.filter((_, i) => i !== index));
+  };
+
+  const updatePrescription = (index, field, value) => {
+    const updated = [...prescription];
+    updated[index][field] = value;
+    setPrescription(updated);
+  };
+
+  const handleSubmitComplete = async () => {
+    if (!diagnosis.trim()) {
+      alert("Vui lòng nhập chuẩn đoán bệnh!");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const token = localStorage.getItem("token");
+      // Lọc bỏ các dòng thuốc trống
+      const filteredPrescription = prescription.filter(p => p.name.trim());
+
+      const res = await fetch(`${API}/medical-records`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          appointmentId: selectedAppt.appointmentId,
+          diagnosis: diagnosis.trim(),
+          prescription: filteredPrescription,
+          doctorNotes: doctorNotes.trim(),
+        }),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        alert("✅ Đã hoàn thành khám bệnh!");
+        closeModal();
+        fetchConversations(); // Refresh data
+      } else {
+        alert(result.message || "Lỗi khi cập nhật");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Lỗi hệ thống");
+    }
+    setSubmitting(false);
   };
 
   return (
@@ -136,13 +215,21 @@ export default function DoctorDashboard() {
                       {statusLabel[c.status] || c.status}
                     </span>
                   </td>
-                  <td>
+                  <td className="appt-actions">
                     <button
                       className="chat-btn"
                       onClick={() => navigate(`/doctor/messages?appt=${c.appointmentId}`)}
                     >
                       💬 Nhắn tin
                     </button>
+                    {c.status !== "Completed" && c.status !== "Cancelled" && (
+                      <button
+                        className="complete-exam-btn"
+                        onClick={() => openModal(c)}
+                      >
+                        📝 Khám xong
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -150,6 +237,113 @@ export default function DoctorDashboard() {
           </table>
         )}
       </div>
+
+      {/* ===== MODAL KHÁM BỆNH ===== */}
+      {showModal && (
+        <div className="exam-modal-overlay" onClick={closeModal}>
+          <div className="exam-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="exam-modal-header">
+              <div className="exam-modal-title">
+                <span className="exam-modal-icon">🩺</span>
+                <div>
+                  <h3>Hồ sơ bệnh án</h3>
+                  <p>Bệnh nhân: <strong>{selectedAppt?.patient?.username}</strong> — {formatDate(selectedAppt?.date)} lúc {selectedAppt?.time}</p>
+                </div>
+              </div>
+              <button className="exam-modal-close" onClick={closeModal}>✕</button>
+            </div>
+
+            <div className="exam-modal-body">
+              {/* Chuẩn đoán */}
+              <div className="exam-field">
+                <label className="exam-label">
+                  <span className="exam-label-icon">📋</span> Chuẩn đoán bệnh <span className="required">*</span>
+                </label>
+                <textarea
+                  className="exam-textarea"
+                  placeholder="Nhập chuẩn đoán bệnh..."
+                  value={diagnosis}
+                  onChange={(e) => setDiagnosis(e.target.value)}
+                  rows={3}
+                />
+              </div>
+
+              {/* Kê đơn thuốc */}
+              <div className="exam-field">
+                <label className="exam-label">
+                  <span className="exam-label-icon">💊</span> Đơn thuốc
+                </label>
+                <div className="prescription-list">
+                  {prescription.map((p, i) => (
+                    <div className="prescription-row" key={i}>
+                      <span className="prescription-num">{i + 1}</span>
+                      <input
+                        type="text"
+                        placeholder="Tên thuốc"
+                        value={p.name}
+                        onChange={(e) => updatePrescription(i, "name", e.target.value)}
+                        className="prescription-input name"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Liều lượng"
+                        value={p.dosage}
+                        onChange={(e) => updatePrescription(i, "dosage", e.target.value)}
+                        className="prescription-input dosage"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Cách dùng"
+                        value={p.instructions}
+                        onChange={(e) => updatePrescription(i, "instructions", e.target.value)}
+                        className="prescription-input instructions"
+                      />
+                      <button
+                        className="prescription-remove"
+                        onClick={() => removePrescriptionRow(i)}
+                        disabled={prescription.length <= 1}
+                        title="Xóa dòng"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <button className="prescription-add" onClick={addPrescriptionRow}>
+                  ＋ Thêm thuốc
+                </button>
+              </div>
+
+              {/* Lời dặn */}
+              <div className="exam-field">
+                <label className="exam-label">
+                  <span className="exam-label-icon">📝</span> Lời dặn
+                </label>
+                <textarea
+                  className="exam-textarea"
+                  placeholder="Nhập lời dặn cho bệnh nhân..."
+                  value={doctorNotes}
+                  onChange={(e) => setDoctorNotes(e.target.value)}
+                  rows={3}
+                />
+              </div>
+            </div>
+
+            <div className="exam-modal-footer">
+              <button className="exam-cancel-btn" onClick={closeModal} disabled={submitting}>
+                Hủy
+              </button>
+              <button
+                className="exam-submit-btn"
+                onClick={handleSubmitComplete}
+                disabled={submitting}
+              >
+                {submitting ? "Đang lưu..." : "✅ Hoàn thành khám"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -6,7 +6,7 @@ const {
   getAppointmentsByUser,
   getAllAppointments,
   payAppointment,
-  cancelAppointment
+  cancelAppointment,
 } = require("../controllers/appointmentController");
 
 router.post("/user/:userId", createAppointment);

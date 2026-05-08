@@ -1,0 +1,390 @@
+/* =============================================
+   MEDICAL RECORDS PAGE — Premium Design
+============================================= */
+
+.mr-page {
+  padding: 50px 20px 60px;
+  max-width: 960px;
+  margin: auto;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+.doctor-mr-page {
+  padding-top: 10px;
+}
+
+/* Header */
+.mr-page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.mr-page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px;
+  letter-spacing: -0.3px;
+}
+
+.mr-page-header h1::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  margin: 14px auto 0;
+  border-radius: 2px;
+}
+
+.mr-page-header p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 14px 0 0;
+}
+
+/* Loading */
+.mr-loading {
+  text-align: center;
+  padding: 80px 20px;
+  color: #94a3b8;
+}
+
+.mr-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #0d9488;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Empty state */
+.mr-empty {
+  text-align: center;
+  padding: 80px 30px;
+  background: #fff;
+  border-radius: 20px;
+  border: 2px dashed #e2e8f0;
+}
+
+.mr-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.mr-empty h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px;
+}
+
+.mr-empty p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Records list */
+.mr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Card */
+.mr-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1.5px solid #f1f5f9;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.mr-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  border-color: #d1fae5;
+}
+
+.mr-card.expanded {
+  border-color: #a7f3d0;
+  box-shadow: 0 8px 32px rgba(13, 148, 136, 0.12);
+}
+
+/* Card Header */
+.mr-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.mr-card-header:hover {
+  background: #f8fafc;
+}
+
+.mr-card-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.mr-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.mr-card-summary {
+  flex: 1;
+  min-width: 0;
+}
+
+.mr-card-summary h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mr-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.mr-meta-dot {
+  color: #cbd5e1;
+}
+
+.mr-card-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #64748b;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.mr-card-arrow.open {
+  transform: rotate(180deg);
+  background: #d1fae5;
+  color: #0f766e;
+}
+
+/* Card Body */
+.mr-card-body {
+  padding: 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: mrSlideDown 0.3s ease;
+}
+
+@keyframes mrSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Info row */
+.mr-info-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.mr-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mr-info-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mr-info-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Sections */
+.mr-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mr-section-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #065f46;
+  letter-spacing: 0.3px;
+}
+
+.mr-section-content {
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #1e293b;
+}
+
+.mr-section-content.diagnosis {
+  background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+  border: 1px solid #a7f3d0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.mr-section-content.notes {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  font-style: italic;
+  color: #78350f;
+}
+
+/* Prescription table */
+.mr-prescription-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #a7f3d0;
+}
+
+.mr-prescription-table th {
+  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+  padding: 12px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #065f46;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: left;
+  border-bottom: 1.5px solid #a7f3d0;
+}
+
+.mr-prescription-table td {
+  padding: 12px 14px;
+  font-size: 0.88rem;
+  color: #334155;
+  border-bottom: 1px solid #ecfdf5;
+}
+
+.mr-prescription-table tr:last-child td {
+  border-bottom: none;
+}
+
+.mr-prescription-table tr:hover td {
+  background: #f0fdf4;
+}
+
+.mr-prescription-table .med-num {
+  width: 36px;
+  text-align: center;
+  font-weight: 700;
+  color: #0d9488;
+}
+
+.mr-prescription-table .med-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Timestamp */
+.mr-timestamp {
+  text-align: right;
+  font-size: 0.76rem;
+  color: #94a3b8;
+  padding-top: 8px;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .mr-page {
+    padding: 30px 12px 40px;
+  }
+
+  .mr-page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .mr-card-header {
+    padding: 16px;
+  }
+
+  .mr-card-body {
+    padding: 0 16px 16px;
+  }
+
+  .mr-card-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .mr-meta-dot {
+    display: none;
+  }
+
+  .mr-info-row {
+    grid-template-columns: 1fr;
+  }
+
+  .mr-prescription-table {
+    font-size: 0.8rem;
+  }
+
+  .mr-prescription-table th,
+  .mr-prescription-table td {
+    padding: 8px 10px;
+  }
+}

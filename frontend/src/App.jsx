@@ -12,9 +12,11 @@ import DoctorRoute from "./components/DoctorRoute";
 import DoctorLayout from "./components/DoctorLayout";
 import DoctorDashboard from "./pages/Doctor/DoctorDashboard";
 import DoctorMessages from "./pages/Doctor/DoctorMessages";
+import DoctorMedicalRecords from "./pages/Doctor/DoctorMedicalRecords";
 import PatientChat from "./pages/PatientChat";
 import Appointments from "./pages/Appointments";
 import Schedule from "./pages/Schedule";
+import MedicalRecords from "./pages/MedicalRecords";
 import ManageUsers from "./pages/Admin/ManageUsers";
 import ManageDoctors from "./pages/Admin/ManageDoctors";
 import ManageAppointments from "./pages/Admin/ManageAppointments";
@@ -47,6 +49,7 @@ function App() {
         <Route path="/doctors" element={<Doctor />} />
         <Route path="/appointments" element={<Appointments />} />
         <Route path="/schedule" element={<Schedule />} />
+        <Route path="/medical-records" element={<MedicalRecords />} />
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/payment" element={<Payment />} />
@@ -63,6 +66,7 @@ function App() {
         <Route path="/doctor" element={<DoctorRoute><DoctorLayout /></DoctorRoute>}>
           <Route index element={<DoctorDashboard />} />
           <Route path="messages" element={<DoctorMessages />} />
+          <Route path="medical-records" element={<DoctorMedicalRecords />} />
         </Route>
 
         <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>

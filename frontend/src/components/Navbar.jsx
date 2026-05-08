@@ -114,9 +114,14 @@ export default function Navbar() {
                                 </Link>
 
                                 {!isDoctor && !isAdmin && (
-                                    <Link to="/messages" className="dropdown-item">
-                                        💬 Tin nhắn Bác sĩ
-                                    </Link>
+                                    <>
+                                        <Link to="/messages" className="dropdown-item">
+                                            💬 Tin nhắn Bác sĩ
+                                        </Link>
+                                        <Link to="/medical-records" className="dropdown-item">
+                                            🩺 Hồ sơ bệnh án
+                                        </Link>
+                                    </>
                                 )}
 
                                 {isDoctor && (

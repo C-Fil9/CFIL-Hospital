@@ -210,3 +210,24 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* VIEW RECORD BUTTON */
+.view-record-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+}
+
+.view-record-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
+  filter: brightness(1.1);
+}
