@@ -24,6 +24,28 @@ export default function Schedule() {
     navigate("/payment");
   };
 
+  const handleCancel = async (id) => {
+    if (!window.confirm("Bạn có chắc chắn muốn hủy lịch khám này?")) return;
+    
+    try {
+      const res = await fetch(`${API_BASE_DEFAULT}/appointments/${id}/cancel`, {
+        method: "PUT",
+      });
+      
+      if (res.ok) {
+        setAppointments(appointments.map(item => 
+          item._id === id ? { ...item, status: "Cancelled" } : item
+        ));
+        alert("Đã hủy lịch thành công");
+      } else {
+        alert("Lỗi khi hủy lịch");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Lỗi hệ thống");
+    }
+  };
+
   const getStatusText = (status) => {
     switch (status) {
       case "unpaid": return "Chưa thanh toán";
@@ -60,11 +82,18 @@ export default function Schedule() {
                 </span>
               </div>
 
-              {item.paymentStatus === "unpaid" && item.status !== "Cancelled" && (
-                <button className="pay-btn" onClick={() => handlePay(item)}>
-                  Thanh toán ngay
-                </button>
-              )}
+              <div className="action-buttons">
+                {item.paymentStatus === "unpaid" && item.status !== "Cancelled" && (
+                  <button className="pay-btn" onClick={() => handlePay(item)}>
+                    Thanh toán ngay
+                  </button>
+                )}
+                {item.status !== "Cancelled" && (
+                  <button className="cancel-btn" onClick={() => handleCancel(item._id)}>
+                    Hủy lịch
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         </div>
