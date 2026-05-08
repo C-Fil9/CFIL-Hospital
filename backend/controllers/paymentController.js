@@ -54,9 +54,15 @@ exports.createPayment = async (req, res) => {
 exports.confirmPayment = async (req, res) => {
   try {
     console.log("--- SEPAY WEBHOOK RECEIVED ---");
+    console.log("Headers:", JSON.stringify(req.headers, null, 2));
     console.log("Body:", JSON.stringify(req.body, null, 2));
 
-    const token = req.headers["authorization"]?.replace("Apikey ", "");
+    // 👉 Support multiple auth header formats: "Apikey XXX", "Bearer XXX", or raw token
+    const authHeader = req.headers["authorization"] || "";
+    const token = authHeader.replace(/^(Apikey|Bearer)\s+/i, "").trim();
+
+    console.log("🔑 Extracted token:", token);
+    console.log("🔑 Expected token:", process.env.SEPAY_WEBHOOK_TOKEN);
 
     if (!token || token !== process.env.SEPAY_WEBHOOK_TOKEN) {
       console.error("❌ INVALID WEBHOOK TOKEN");
@@ -64,47 +70,81 @@ exports.confirmPayment = async (req, res) => {
     }
 
     const {
-      transactionContent, content,
-      amountIn, transferAmount,
-      accountNumber, subAccount
+      transferType, transferAmount, content,
+      transactionContent,
+      amountIn,
+      accountNumber, subAccount,
+      description
     } = req.body;
 
-    // Normalize fields (SePay has multiple formats)
-    const finalContent = transactionContent || content || "";
+    // Normalize fields (SePay has multiple field names depending on version)
+    const rawContent = transactionContent || content || description || "";
     const finalAmount = amountIn || transferAmount || 0;
     const finalAccount = subAccount || accountNumber || "";
 
+    console.log("📝 Raw content:", rawContent);
+    console.log("💰 Amount:", finalAmount);
+    console.log("🏦 Account:", finalAccount);
+
     // Check for correct bank account
     const envAccount = String(process.env.BANK_ACCOUNT).trim();
-    if (String(finalAccount).trim() !== envAccount && String(accountNumber).trim() !== envAccount) {
+    if (String(finalAccount).trim() !== envAccount && String(accountNumber || "").trim() !== envAccount) {
       console.warn(`⚠️ Account mismatch: Env=${envAccount}, Received=${finalAccount}/${accountNumber}`);
       return res.status(200).json({ success: true, message: "Account mismatch" });
     }
 
-    // 👉 Robust Regex to find PAY followed by ID
-    const match = finalContent.match(/PAY_?([a-fA-F0-9]{24})/i) || finalContent.match(/PAY_?([a-zA-Z0-9]+)/i);
+    // 👉 Remove ALL spaces and special chars from content before matching
+    // Banks often strip underscores and add spaces, e.g. "PAY_69abc..." becomes "PAY 69abc..." or "PAY69abc..."
+    const cleanContent = rawContent.replace(/\s+/g, "").toUpperCase();
+    console.log("🧹 Cleaned content:", cleanContent);
+
+    // Try to find PAY followed by a 24-char hex ObjectId
+    let match = cleanContent.match(/PAY[_\s]?([A-F0-9]{24})/i);
+
+    // Fallback: try on raw content too (in case cleaning broke something)
+    if (!match) {
+      match = rawContent.match(/PAY[_\s]?([a-fA-F0-9]{24})/i);
+    }
+
+    // Last resort: match any alphanumeric string after PAY
+    if (!match) {
+      match = cleanContent.match(/PAY[_\s]?([A-Z0-9]+)/i);
+    }
 
     if (!match) {
-      console.warn("⚠️ No PAY_ID or PAYID found in content:", finalContent);
+      console.warn("⚠️ No PAY_ID or PAYID found in content:", rawContent);
       return res.status(200).json({ success: true });
     }
 
-    const appointmentId = match[1];
-    console.log("🔍 Found ID in content:", appointmentId);
+    const appointmentId = match[1].toLowerCase(); // ObjectIds are lowercase
+    console.log("🔍 Found appointment ID in content:", appointmentId);
 
-    // 👉 Case-insensitive search
-    const payment = await Payment.findOne({
-      appointmentId: mongoose.Types.ObjectId.isValid(appointmentId) ? appointmentId : null,
-      status: "pending"
-    }) || await Payment.findOne({
-      content: { $regex: new RegExp(`^PAY_?${appointmentId}$`, "i") },
-      status: "pending"
-    });
+    // 👉 Search for payment: by appointmentId first, then by content field
+    let payment = null;
+
+    if (mongoose.Types.ObjectId.isValid(appointmentId)) {
+      payment = await Payment.findOne({
+        appointmentId: appointmentId,
+        status: "pending"
+      });
+    }
+
+    if (!payment) {
+      payment = await Payment.findOne({
+        content: { $regex: new RegExp(`PAY_?${appointmentId}`, "i") },
+        status: "pending"
+      });
+    }
 
     if (!payment) {
       console.warn(`⚠️ No pending payment found for ID: ${appointmentId}`);
+      // List all pending payments for debugging
+      const allPending = await Payment.find({ status: "pending" }).select("content appointmentId amount");
+      console.log("📋 All pending payments:", JSON.stringify(allPending, null, 2));
       return res.status(200).json({ success: true });
     }
+
+    console.log(`✅ Found payment: ${payment._id}, content: ${payment.content}, amount: ${payment.amount}`);
 
     if (Number(finalAmount) < Number(payment.amount)) {
       console.warn(`⚠️ Partial payment: Expected ${payment.amount}, got ${finalAmount}`);
